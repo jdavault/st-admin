@@ -1,0 +1,739 @@
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+//
+// Load core variables and mixins
+// --------------------------------------------------
+@import "variables.less";
+@import "mixins.less";
+
+//button-groups.less
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: @zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0; // override default ul
+  list-style: none;
+  font-size: @font-size-base;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  background-color: @navbar-default-bg;
+  border: 0px solid @dropdown-fallback-border; // IE8 fallback
+  border: 0px solid @dropdown-border;
+  border-radius: @border-radius-base;
+  .box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+  background-clip: padding-box;
+
+  // Aligns the dropdown menu to right
+  //
+  // Deprecated as of 3.1.0 in favor of `.dropdown-menu-[dir]`
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    .nav-divider(@dropdown-divider-bg);
+  }
+
+  // Links within the dropdown menu
+  > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: @line-height-base;
+    color: @dropdown-link-color;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+  }
+}
+
+// Hover/Focus state
+// .dropdown-menu > li > a {
+//   &:hover,
+//   &:focus {
+//     text-decoration: none;
+//     color: @navbar-default-link-color;
+//   }
+// }
+
+// // Active state
+// .dropdown-menu > .active > a {
+//   &,
+//   &:hover,
+//   &:focus {
+//     color: @dropdown-link-active-color;
+//     text-decoration: none;
+//     outline: 0;
+//   }
+// }
+
+// //dropdown.less
+// // Hover/Focus state
+// .dropdown-menu > li > a {
+//   &:hover,
+//   &:focus {
+//     text-decoration: none;
+//     color: @navbar-default-link-color;
+//   }
+// }
+
+// // Active state
+// .dropdown-menu > .active > a {
+//   &,
+//   &:hover,
+//   &:focus {
+//     color: @dropdown-link-active-color;
+//     text-decoration: none;
+//     outline: 0;
+//   }
+// }
+
+//navbar-less
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  float: left;
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  font-size: @font-size-large;
+  line-height: @line-height-computed;
+  height: @navbar-height;
+
+  > img {
+    display: block;
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: -@navbar-padding-horizontal;
+    }
+  }
+}
+
+//navs.less
+.nav {
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  &:extend(.clearfix all);
+
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+      padding: @nav-link-padding;
+
+      &:hover,
+      &:focus {
+        //text-decoration: none;
+        //background-color: @nav-link-hover-bg;
+      }
+    }
+
+    // Disabled state sets text to gray and nukes hover/tab effects
+    &.disabled > a {
+      color: @nav-disabled-link-color;
+
+      &:hover,
+      &:focus {
+        color: @nav-disabled-link-hover-color;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: @cursor-disabled;
+      }
+    }
+  }
+
+  // Open dropdowns
+  .open > a {
+    background: none;
+
+    &,
+    &:hover,
+    &:focus {
+      //border-color: @link-color;
+      //background: none;
+    }
+  }
+
+  // Nav dividers (deprecated with v3.0.1)
+  //
+  // This should have been removed in v3 with the dropping of `.nav-list`, but
+  // we missed it. We don't currently support this anywhere, but in the interest
+  // of maintaining backward compatibility in case you use it, it's deprecated.
+  .nav-divider {
+    .nav-divider();
+  }
+
+  // Prevent IE8 from misplacing imgs
+  //
+  // See https://github.com/h5bp/html5-boilerplate/issues/984#issuecomment-3985989
+  > li > a > img {
+    max-width: none;
+  }
+}
+
+// Tabs
+// -------------------------
+
+// Give the tabs something to sit on
+.nav-tabs {
+  border-bottom: 1px solid @nav-tabs-border-color;
+
+  > li {
+    float: left;
+    // Make the list-items overlay the bottom border
+    margin-bottom: -1px;
+
+    // Actual tabs (as links)
+    > a {
+      margin-right: 2px;
+      line-height: @line-height-base;
+      border: 1px solid transparent;
+      border-radius: @border-radius-base @border-radius-base 0 0;
+      cursor: pointer;
+
+      &:hover {
+        border-color: @nav-tabs-link-hover-border-color @nav-tabs-link-hover-border-color @nav-tabs-border-color;
+      }
+    }
+
+    // Active state, and its :hover to override normal :hover
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @nav-tabs-active-link-hover-color;
+        border: 1px solid @nav-tabs-active-link-hover-border-color;
+        border-bottom-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+
+  // pulling this in mainly for less shorthand
+  &.nav-justified {
+    .nav-justified();
+    .nav-tabs-justified();
+  }
+}
+
+// Pills
+// -------------------------
+.nav-pills {
+  > li {
+    float: left;
+
+    // Links rendered as pills
+    > a {
+      border-radius: @nav-pills-border-radius;
+    }
+
+    + li {
+      margin-left: 2px;
+    }
+
+    // Active state
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @nav-pills-active-link-hover-color;
+        //background-color: @nav-pills-active-link-hover-bg;
+      }
+    }
+  }
+}
+
+// Nav variations
+// --------------------------------------------------
+
+// Justified nav links
+// -------------------------
+
+.nav-justified {
+  width: 100%;
+
+  > li {
+    float: none;
+
+    > a {
+      text-align: center;
+      margin-bottom: 5px;
+      color: @text-color;
+
+      &:hover, &:focus {
+        background: none;
+        color: @text-color;
+      }
+    }
+  }
+
+  > .dropdown .dropdown-menu {
+    top: auto;
+    left: auto;
+  }
+
+  @media (min-width: @screen-sm-min) {
+    > li {
+      display: table-cell;
+      width: 1%;
+
+      > a {
+        color: @text-color;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Move borders to anchors instead of bottom of list
+//
+// Mixin for adding on top the shared `.nav-justified` styles for our tabs
+.nav-tabs-justified {
+  border-bottom: 0;
+
+  li {
+    display: table-cell;
+    width: 1%;
+
+    border-bottom: .5px solid @nav-tabs-color !important;
+  }
+
+  > li > a {
+    color: @text-color;
+
+    // Override margin from .nav-tabs
+    margin-right: 0;
+    margin-bottom: -1px;
+    border-radius: @border-radius-base;
+
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+
+  > .active > a,
+  > .active > a:hover,
+  > .active > a:focus {
+    color: @nav-tabs-active-color;
+
+    border: 0 solid @nav-tabs-justified-link-border-color;
+    border-bottom: .5px transparent;
+    border-bottom: @nav-active-border-height solid @nav-tabs-active-color !important;
+  }
+
+  @media (min-width: @screen-sm-min) {
+    > li > a {
+      border-bottom: 0px solid @nav-tabs-justified-link-border-color;
+      border-radius: @border-radius-base @border-radius-base 0 0;
+      color: @text-color;
+    }
+
+    > .active > a,
+    > .active > a:hover,
+    > .active > a:focus {
+      color: @nav-tabs-active-color;
+      border-bottom-color: @nav-active-border-height solid @nav-tabs-active-color;
+    }
+  }
+}
+
+// responsive-utilities.less
+.hidden-print {
+  @media print {
+    .responsive-invisibility();
+  }
+}
+
+//type.less
+h1, .h1 {
+  font-size: @font-size-h1;
+  font-weight: 700;
+
+  @media (max-width: @screen-md) {
+    font-size: @font-size-h1 - 4;
+  }
+}
+
+h2, .h2 {
+  font-size: @font-size-h2;
+
+  //@media (max-width: @screen-md) {
+  //  font-size: @font-size-h2 - 4;
+  //}
+}
+
+h3, .h3 {
+  font-size: @font-size-h3;
+
+  @media (max-width: @screen-md) {
+    font-size: @font-size-h3 - 4;
+  }
+}
+
+h4, .h4 {
+  font-size: @font-size-h4;
+
+  @media (max-width: @screen-md) {
+    font-size: @font-size-h4 - 4;
+  }
+}
+
+h5, .h5 {
+  font-size: @font-size-h5;
+
+  @media (max-width: @screen-md) {
+    font-size: @font-size-h5 - 4;
+  }
+}
+
+h6, .h6 {
+  font-size: @font-size-h6;
+
+  @media (max-width: @screen-md) {
+    font-size: @font-size-h6 - 4;
+  }
+}
+
+//navs adjustments
+@media (max-width: 991px) {
+  .navbar-nav .open .dropdown-menu > li > a {
+    width: 100vw;
+  }
+}
+
+.navbar-logo {
+  &:hover, &:focus {
+    background-color: #fff;
+  }
+}
+
+.bm-menu {
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: #fff;
+  }
+}
+
+.row-xxs {
+  @media (max-width: @screen-xxs-max) {
+    .make-row();
+  }
+}
+
+.row-xs {
+  @media (max-width: @screen-xs-max) {
+    .make-row();
+  }
+}
+
+.row-sm {
+  @media (max-width: @screen-sm-max) {
+    .make-row();
+  }
+}
+
+.row-md {
+  @media (max-width: @screen-md-max) {
+    .make-row();
+  }
+}
+
+.navbar-logo:hover, .navbar-logo:focus {
+  background-color: #ffffff !important;
+}
+
+.btn {
+  max-width: 300px;
+  border-bottom: 4px solid transparent;
+
+  &:hover {
+    border-bottom: 4px solid rgba(0, 0, 0, 0.15); //15% darker
+  }
+
+  &.btn-fw {
+    width: 100%;
+  }
+}
+
+/** visible xxs */
+.visible-xxs {
+  display: none !important;
+}
+
+tr.visible-xxs {
+  display: none !important;
+}
+
+th.visible-xxs,
+td.visible-xxs {
+  display: none !important;
+}
+
+@media (max-width: @screen-xxs-max) {
+
+  .visible-xxs {
+    display: block !important;
+  }
+
+  tr.visible-xxs {
+    display: table-row !important;
+  }
+
+  th.visible-xxs,
+  td.visible-xxs {
+    display: table-cell !important;
+  }
+
+}
+
+@media (min-width: 385px) and (max-width: 767px) {
+
+  .visible-xxs.visible-xs {
+    display: block !important;
+  }
+
+  tr.visible-xxs.visible-xs {
+    display: table-row !important;
+  }
+
+  th.visible-xxs.visible-xs,
+  td.visible-xxs.visible-xs {
+    display: table-cell !important;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .visible-xxs.visible-sm {
+    display: block !important;
+  }
+
+  tr.visible-xxs.visible-sm {
+    display: table-row !important;
+  }
+
+  th.visible-xxs.visible-sm,
+  td.visible-xxs.visible-sm {
+    display: table-cell !important;
+  }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  .visible-xxs.visible-md {
+    display: block !important;
+  }
+
+  tr.visible-xxs.visible-md {
+    display: table-row !important;
+  }
+
+  th.visible-xxs.visible-md,
+  td.visible-xxs.visible-md {
+    display: table-cell !important;
+  }
+
+}
+
+@media (min-width: 1200px) {
+
+  .visible-xxs.visible-lg {
+    display: block !important;
+  }
+
+  tr.visible-xxs.visible-lg {
+    display: table-row !important;
+  }
+
+  th.visible-xxs.visible-lg,
+  td.visible-xxs.visible-lg {
+    display: table-cell !important;
+  }
+
+}
+
+@media (max-width: @screen-xxs) {
+
+  .visible-xs.visible-xxs {
+    display: block !important;
+  }
+
+  tr.visible-xs.visible-xxs {
+    display: table-row !important;
+  }
+
+  th.visible-xs.visible-xxs,
+  td.visible-xs.visible-xxs {
+    display: table-cell !important;
+  }
+
+}
+
+@media (max-width: @screen-xxs) {
+
+  .visible-sm.visible-xxs {
+    display: block !important;
+  }
+
+  tr.visible-sm.visible-xxs {
+    display: table-row !important;
+  }
+
+  th.visible-sm.visible-xxs,
+  td.visible-sm.visible-xxs {
+    display: table-cell !important;
+  }
+
+}
+
+@media (max-width: @screen-xxs) {
+
+  .visible-md.visible-xxs {
+    display: block !important;
+  }
+
+  tr.visible-md.visible-xxs {
+    display: table-row !important;
+  }
+
+  th.visible-md.visible-xxs,
+  td.visible-md.visible-xxs {
+    display: table-cell !important;
+  }
+
+}
+
+@media (max-width: @screen-xxs) {
+
+  .visible-lg.visible-xxs {
+    display: block !important;
+  }
+
+  tr.visible-lg.visible-xxs {
+    display: table-row !important;
+  }
+
+  th.visible-lg.visible-xxs,
+  td.visible-lg.visible-xxs {
+    display: table-cell !important;
+  }
+
+}
+
+
+// Apply the mixin to the alerts
+.alert-success {
+  border-color: #3c763d;
+}
+
+.alert-info {
+  border-color: #31708f;
+}
+
+.alert-warning {
+  border-color: #8a6d3b;
+}
+
+.alert-danger {
+  border-color: #3c763d;
+}
+
+
+// -------------------- start button dropdown css ---------------------------
+.actions-menu {
+  text-align: center;
+
+  @media (min-width: @screen-sm) {
+    text-align: right;
+  }
+
+  @media (min-width: @screen-xxs) and (max-width: @screen-xs-max) {
+    padding-top: 20px;
+  }
+}
+
+.button-dropdown, .button-dropdown:hover, .button-dropdown:focus {
+  width: 260px;
+  height: 50px;
+  padding: 6px 12px;
+  border: 1px solid #ccc !important;
+  background-color: white !important;
+  color: #333 !important;
+  font-size: 18px;
+  font-weight: 700;
+
+  .fa-chevron-down {
+    margin-left: 5px;
+  }
+
+  @media (min-width: @screen-sm) {
+    width: 210px;
+    margin: none;
+  }
+
+  @media (min-width: @screen-lg) {
+    width: 118px;
+  }
+
+}
+
+.auction-actions-menu, .button-dropdown-menu {
+  min-width: none !important;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 260px;
+
+  @media (min-width: @screen-sm) {
+    width: 210px;
+    margin: none;
+  }
+
+  @media (min-width: @screen-md) {
+    width: 118px;
+  }
+
+  .disabled, .disabled-link {
+    color: #999999 !important;
+  }
+
+  .divider {
+    background-color: #ccc;
+  }
+
+  .cancel-link {
+    cursor: pointer;
+  }
+
+  li {
+    a, a:focus, a:hover {
+      background-color: white !important;
+      color: #333 !important;
+      white-space: normal;
+      padding: 10px 20px;
+    }
+  }
+
+  .unable, .unable:hover {
+    color: #0F7DB8 !important;
+  }
+}
+
+// -------------------- end button dropdown css ---------------------------
+

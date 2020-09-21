@@ -1,0 +1,456 @@
+@import "../../styles/vendors/bootstrap/variables.less";
+
+.above-table-area {
+  height: 50px;
+  font-size: 16px;
+  color: #232323;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.table-title {
+  min-height: 40px;
+  width: 100%;
+  padding: 10px;
+  background-color: #ebebeb;
+  font-size: 18px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.table-container {
+
+
+  // Empty table css
+  &.empty-table {
+    border: none !important;
+
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px !important;
+
+    .missing-block {
+      border: none !important;
+      max-width: 450px;
+      margin: 0 auto 25px;
+      display: inline-block;
+
+      @media (max-width: @screen-xxs-max) {
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: @screen-xxs-max) {
+      table {
+        tbody {
+          tr.no-rows {
+            td {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .btn {
+      width: 300px;
+
+      @media (max-width: @screen-xxs-max) {
+        width: 100%;
+      }
+    }
+
+    .search-button {
+      padding-bottom: 25px;
+    }
+  }
+
+
+  .auction-image-wrapper {
+    margin-left: 15px;
+
+    @media (min-width: @screen-xs) AND (max-width: @screen-xs-max) {
+      width: 396px;
+    }
+    @media (max-width: @screen-xxs-max) {
+      width: 279px;
+    }
+  }
+
+  .auction-image {
+
+    background: #ebebeb url('/static/images/no-image.svg') no-repeat center;
+
+    width: 157px;
+    height: 157px;
+
+    @media (min-width: @screen-sm) AND (max-width: @screen-sm-max) {
+      width: 93px;
+      height: 93px;
+    }
+    @media (min-width: @screen-xs) AND (max-width: @screen-xs-max) {
+      width: 396px;
+      height: 264px;
+    }
+    @media (max-width: @screen-xxs-max) {
+      width: 279px;
+      height: 192px;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      padding: 0;
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    .auction-img {
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  &.is-card {
+    width: 100%;
+
+    .auction-image-wrapper {
+      margin-left: auto;
+      margin-right: auto;
+
+      width: 100%;
+    }
+
+    .auction-image {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+
+    .card {
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+    }
+
+    .xlCards {
+      height: auto;
+    }
+
+    .card-title {
+      min-height: 49px;
+      padding: 10px;
+      background-color: #f7f7f7;
+      background-size: cover;
+
+      font-size: 20px;
+      color: #333333;
+      font-weight: 700;
+
+      text-transform: capitalize;
+    }
+
+    .card-body {
+      padding: 20px 15px;
+
+      .card-body-row {
+        margin-bottom: 15px;
+      }
+
+      .title {
+        vertical-align: top;
+
+        font-size: 14px;
+        color: #333333;
+        font-weight: 700;
+
+        width: 35%;
+        display: inline-block;
+        text-transform: capitalize;
+
+        @media (min-width: @screen-sm) {
+          width: 45%;
+        }
+      }
+
+      .card-no-header {
+        margin-top: 50px;
+        text-align: center;
+
+        .btn {
+          margin: 0 auto;
+        }
+      }
+
+      & > .card-no-header:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .xlCards {
+      @media (min-width: 768px) AND (max-width: 991px) {
+        .card-body {
+          display: table;
+          width: 100%;
+        }
+
+        .auction-image-wrapper {
+          display: table-cell;
+          width: 132px;
+        }
+
+        .auction-image {
+          height: 132px;
+          margin: 0;
+        }
+
+        .title {
+          display: inline-block;
+          width: 40%
+        }
+
+        .body {
+          display: inline-block;
+          width: 50%;
+          max-width: 50%;
+        }
+
+        .card-button {
+          width: 100%;
+        }
+
+        .card-row {
+          margin: 0 15px;
+        }
+      }
+
+      .card-button {
+        margin: 0 auto;
+      }
+
+      .table-button {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: @screen-xs-max) {
+      .st-pagination-wrapper {
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+    }
+  }
+
+  &.is-table {
+    width: 100%;
+    margin-top: 20px;
+
+    @media (min-width: @screen-xs) AND (max-width: @screen-xs-max) {
+      width: 100vw;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    &.empty-table {
+
+      td {
+        border-top: none;
+      }
+
+      .dashboard-btn {
+        width: 300px;
+        @media (max-width: @screen-xxs-max) {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: @screen-xs-max) {
+        border: none;
+
+        table {
+          border: none;
+        }
+      }
+    }
+
+    table {
+      margin-bottom: 0;
+
+      .sort-asc {
+        -webkit-transform: rotate(180deg); /* Chrome and other webkit browsers */
+        -moz-transform: rotate(180deg); /* FF */
+        -o-transform: rotate(180deg); /* Opera */
+        -ms-transform: rotate(180deg); /* IE9 */
+        transform: rotate(180deg); /* W3C compliant browsers */
+
+        /* IE8 and below */
+        filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1, M12=0, M21=0, M22=-1, DX=0, DY=0, SizingMethod='auto expand');
+      }
+
+      thead {
+        border: 1px solid #444444;
+        border-top: none;
+      }
+
+      tbody {
+        tr {
+          border: 1px solid #dddddd;
+          border-top: none;
+        }
+      }
+
+      tr {
+
+        &.no-rows {
+          background-color: #ffffff;
+          border: none !important;
+
+          td {
+            @media (max-width: @screen-xxs-max) {
+              padding: 10px;
+            }
+            padding: 20px;
+          }
+        }
+
+        th, td {
+          word-wrap: normal;
+          vertical-align: middle !important; // bootstrap uses full path to the th and td which makes it hard to override
+          padding: 10px;
+          word-break: break-word;
+        }
+
+        th {
+          background-color: #444444;
+
+          font-size: 12px;
+          white-space: nowrap;
+
+          color: #ffffff;
+          font-weight: 600;
+          text-decoration: none solid rgb(255, 255, 255);
+
+          padding-top: 10px;
+          padding-bottom: 10px;
+
+          &.first-column {
+            padding-left: 25px !important;
+          }
+
+          @media (min-width: @screen-sm) {
+            padding: 10px 5px !important;
+          }
+
+          &.number {
+            text-align: center;
+          }
+
+          &.sort-arrow {
+            padding-left: 10px;
+            cursor: pointer;
+
+            .fa:first-child {
+              padding-right: 2px;
+              margin-left: 3px;
+            }
+          }
+        }
+
+        td {
+          color: #232323;
+
+          @media (max-width: @screen-xxs-max) {
+            font-size: 12px;
+          }
+
+          @media (min-width: @screen-sm) {
+            padding: 10px 5px !important;
+          }
+
+          &.first-column {
+            @media (min-width: @screen-sm) {
+              padding: 10px 25px !important;
+            }
+          }
+
+          &.number {
+            text-align: center;
+            word-break: keep-all;
+          }
+
+          .wrapper {
+            text-align: left;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .card-footer {
+      border-top: 1px solid #ebebeb;
+      width: 100%;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      .btn {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.no-border-empty > .empty-table.table-container.is-table {
+  border: none !important;
+  max-width: 410px;
+  margin: 0 auto;
+}
+
+.large-image{
+  width: 114px !important;
+  height: 123px !important;
+}
+
+.missing-block {
+  .missing-image {
+    // height: 79px;
+  }
+}
+
+.auction-table-high-bid {
+  color: #f16021 !important;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.table-image {
+  background-color: #ebebeb !important;
+
+  @media (max-width: @screen-sm-max) {
+    width: 93px;
+    height: 93px;
+  }
+  @media (max-width: @screen-xs-max) {
+    margin-top: -50px !important;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 264px;
+  }
+  @media (max-width: @screen-xxs-max) {
+    width: 100%;
+    height: 192px;
+  }
+  @media (min-width: @screen-md) {
+    margin-top: none;
+    margin-bottom: none;
+    width: 157px;
+    height: 157px;
+  }
+}
+.table-hover {
+  > tbody > tr.clickable:hover {
+    cursor: pointer;
+  }
+}
